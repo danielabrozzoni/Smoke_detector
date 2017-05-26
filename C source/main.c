@@ -36,6 +36,11 @@
 
 char dataIn[SIZE];
 
+/**
+    \brief This is an implementation of pow function, I created it because on school's pc (an old pc with Windows XP)
+    pow function is different and doesn't work as expected (I don't know why)
+*/
+
 int powa(int a, int b)
 {
     int n = 1;
@@ -43,6 +48,12 @@ int powa(int a, int b)
         n*=a;
     return n;
 }
+
+/**
+
+    \brief Like powa, this is an implementation of stoi.
+
+*/
 
 int sto(char stringa[])
 {

@@ -11,7 +11,7 @@ int greenLed = 11;
 int buzzer = 10;
 int smokeA0 = A5;
 //Valore di soglia
-int sensorThres = 700;
+int sensorThres = 400;
 
 
 void setup(){
