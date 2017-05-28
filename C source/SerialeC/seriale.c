@@ -15,24 +15,24 @@ HANDLE COM_open(int port, char mode, int speed, char parity, int bits, int stop,
     fileHandle = CreateFile(
          porta_seriale, //Nome della porta (COM1, COM2, COM3 ecc.
          GENERIC_READ | GENERIC_WRITE,//Apertura il lettura / scrittura
-            0, //sharing mode, se 0 la porta non puÃ² essere condivisa
-            0, //attributi di sicurezza, con 0 l'handle non puÃ² essere ereditato
-            OPEN_EXISTING, //la porta deve esistere per poter essere aperta, altrimenti non puÃ² crearla
-            0, //Overlapped /non-overlapped mode, con 0 non -overlapped (non si puÃ² leggere e scrivere contemporaneamente)
+            0, //sharing mode, se 0 la porta non può essere condivisa
+            0, //attributi di sicurezza, con 0 l'handle non può essere ereditato
+            OPEN_EXISTING, //la porta deve esistere per poter essere aperta, altrimenti non può crearla
+            0, //Overlapped /non-overlapped mode, con 0 non -overlapped (non si può leggere e scrivere contemporaneamente)
             0 //template file, non definito per le seriali
         );
-    //Controllo se l'apertura Ã¨ fallita
+    //Controllo se l'apertura è fallita
     if (fileHandle == INVALID_HANDLE_VALUE)
         return (void*)(-1);
     //Settaggio dei parametri
     FillMemory(&dcb, sizeof(dcb), 0); //Inizializzo tutti i campi della struttura a zero
     dcb.DCBlength = sizeof(dcb); //Setto il campo lunghezza alla propria dimensione
-    //Costruisco una stringa che Ã¨ il parametro d'ingresso per settare i campi di un DCB
+    //Costruisco una stringa che è il parametro d'ingresso per settare i campi di un DCB
     //La stringa contiene i parametri speed, parity, data size, stop bits separati da virgola
-    //speed Ã¨ in BAUD
-    //parity Ã¨ n per nessuna paritÃ , e(even) per pari, o(odd) per dispari
-    //data size Ã¨ il numero di bit (tipicamente 8)
-    //stop bits Ã¨ il numero di bit di stop, tipicamente 1 o 2
+    //speed è in BAUD
+    //parity è n per nessuna parità, e(even) per pari, o(odd) per dispari
+    //data size è il numero di bit (tipicamente 8)
+    //stop bits è il numero di bit di stop, tipicamente 1 o 2
     //Per Arduino i valori di default sono 9600,n,8,1
     //Nel costruirlo controllo anche se ci riesco
     char settaggi[100];
@@ -52,14 +52,14 @@ HANDLE COM_open(int port, char mode, int speed, char parity, int bits, int stop,
     //Imposto i timeouts
     COMMTIMEOUTS cmt;
     //Timeout in lettura tra la lettura di due caratteri consecutivi in ms
-    //Se passa piÃ¹ di quel tempo la lettura Ã¨ considerata conclusa e la
+    //Se passa più di quel tempo la lettura è considerata conclusa e la
     //funzione ReadFile ritorna
     cmt.ReadIntervalTimeout = 100;
     //Valore totale del timeout per ogni operazione di lettura rispetto ai byte letti
     //(num byte da leggere) * (timeout) in ms
     //Il numero di byte dal leggere sono quelli specificati dalla ReadFile come
     //terzo parametro, se ad esempio si vogliono leggere 100 byte e il parametro
-    //Ã¨ impostato a 10 il timeout scatta dopo un secondo
+    //è impostato a 10 il timeout scatta dopo un secondo
     cmt.ReadTotalTimeoutMultiplier = 50;
     //Valore da aggiungere al precedente per ogni singola operazione di lettura
     cmt.ReadTotalTimeoutConstant = 0;

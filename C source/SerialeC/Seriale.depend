@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1495984775 source:e:\smoke_detector\c source\serialec\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+

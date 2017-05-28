@@ -18,7 +18,7 @@
 
 /*! \file
  *  \brief Esempio di utilizzo della porta seriale per la lettura
- *  Questa versione non Ã¨ portabile ed Ã¨ relativa unicamente al S.O. Windows.
+ *  Questa versione non è portabile ed è relativa unicamente al S.O. Windows.
  *  Riferimenti: Serial port programming in Windows and linux, Maxwell Walter, 2003
  *  \author Alessandro Bugatti
  *
@@ -43,8 +43,8 @@ char dataIn[SIZE];
 
 int powa(int a, int b)
 {
-    int n = 1;
-    for(int i = 0; i < b; i++)
+    int i,n = 1;
+    for(i = 0; i < b; i++)
         n*=a;
     return n;
 }
@@ -57,8 +57,8 @@ int powa(int a, int b)
 
 int sto(char stringa[])
 {
-    int n = 0;
-    for(int i = 0; stringa[i] != '\0'; i++)
+    int i,n = 0;
+    for( i = 0; stringa[i] != '\0'; i++)
     {
         if(dataIn[i] - '0'>= 0){
             n += (dataIn[i] - '0')*powa(10,strlen(stringa) - i - 1);
@@ -72,7 +72,7 @@ int sto(char stringa[])
 int main()
 {
     FILE *out;
-    out = freopen("dati.txt", "w", stdout);
+    //out = freopen("dati.txt", "w", stdout);
     HANDLE com;
     com = COM_open(3, '0', 9600, 'n', 8, 1, 'n');
     if (com == -1)
@@ -88,9 +88,9 @@ int main()
         {
             dataIn[read]='\0';
             //printf("%d byte letti\n%s \n",read,dataIn);
-            //printf("%s ",dataIn);
-            int n = sto(dataIn);
-            printf("%d\n", n);
+            printf("%s",dataIn);
+            //int n = sto(dataIn);
+            //printf("%d\n", n);
             i++;
             //Questa parte serve solo per uscire dal ciclo dopo 5 letture
             if (i == 10) break;
