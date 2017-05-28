@@ -1,6 +1,0 @@
-# depslib dependency file v1.0
-1495988807 source:e:\smoke_detector\c source\dweet\main.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-
