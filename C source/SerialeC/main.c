@@ -78,6 +78,7 @@ int main()
             //printf("%d\n", n);
             i++;
             dweet(i,n);
+            //delay(1000);
 
         }
         else

@@ -1,9 +1,4 @@
 # depslib dependency file v1.0
-1495988807 source:e:\smoke_detector\c source\dweet\main.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-
 1496013818 source:c:\users\piero\desktop\smoke_detector\c source\dweet\main.c
 	<stdio.h>
 	<stdlib.h>
