@@ -31,7 +31,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
-
 #define SIZE 1024
 
 char dataIn[SIZE];
@@ -57,7 +56,7 @@ void dweet(int key, int dato)
 int main()
 {
     FILE *out;
-    out = freopen("dati.txt", "w", stdout);
+    //out = freopen("dati.txt", "w", stdout);
     HANDLE com;
     com = COM_open(3, '0', 9600, 'n', 8, 1, 'n');
     if (com == -1)
@@ -75,7 +74,7 @@ int main()
             //printf("%d byte letti\n%s \n",read,dataIn);
             //printf("%s",dataIn);
             int n = atoi(dataIn);
-            //printf("%d\n", n);
+            printf("%d\n", n);
             i++;
             dweet(i,n);
             //delay(1000);
