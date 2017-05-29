@@ -88,8 +88,8 @@ int main()
         {
             dataIn[read]='\0';
             //printf("%d byte letti\n%s \n",read,dataIn);
-            printf("%s",dataIn);
-            //int n = sto(dataIn);
+            //printf("%s",dataIn);
+            int n = atoi(dataIn);
             //printf("%d\n", n);
             i++;
             //Questa parte serve solo per uscire dal ciclo dopo 5 letture

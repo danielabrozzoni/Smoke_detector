@@ -1,3 +1,4 @@
+
 /*
   Copyright (C) 2010 Alessandro Bugatti (alessandro.bugatti@istruzione.it)
 
@@ -18,7 +19,7 @@
 
 /*! \file
  *  \brief Esempio di utilizzo della porta seriale per la lettura
- *  Questa versione non è portabile ed è relativa unicamente al S.O. Windows.
+ *  Questa versione non ï¿½ portabile ed ï¿½ relativa unicamente al S.O. Windows.
  *  Riferimenti: Serial port programming in Windows and linux, Maxwell Walter, 2003
  *  \author Alessandro Bugatti
  *
@@ -39,4 +40,3 @@ int COM_read(HANDLE com, char *buf, int n);
 void COM_close(HANDLE com);
 
 #endif // SERIALE_H_INCLUDED
-
