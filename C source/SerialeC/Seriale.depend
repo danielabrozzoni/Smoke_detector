@@ -1,5 +1,13 @@
 # depslib dependency file v1.0
-1495984775 source:e:\smoke_detector\c source\serialec\main.c
+1496050168 source:e:\smoke_detector\c source\serialec\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1496043524 source:e:\smoke_detector\c source\serialec\seriale.c
+	"seriale.h"
+
+1496043565 e:\smoke_detector\c source\serialec\seriale.h
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>

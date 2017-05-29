@@ -36,6 +36,24 @@
 
 char dataIn[SIZE];
 
+
+void dweet(int key, int dato)
+{
+    const char nomeDweet[] = "Alternanza_Brozzoni_Brunelli_Trevisan";
+    char buffer[32];
+    char command[512];
+    strncpy(command,"curl https://dweet.io/dweet/for/",512);
+    strncat(command,nomeDweet,512);
+    strncat(command,"?",512);
+    itoa(key,buffer,10);
+    strncat(command,buffer,512);
+    strncat(command,"=",512);
+    itoa(dato,buffer,10);
+    strncat(command,buffer,512);
+    system(command);
+    printf("%s\n", command);
+}
+
 int main()
 {
     FILE *out;
@@ -57,9 +75,10 @@ int main()
             //printf("%d byte letti\n%s \n",read,dataIn);
             //printf("%s",dataIn);
             int n = atoi(dataIn);
-            printf("%d\n", n);
+            //printf("%d\n", n);
             i++;
-            if (i == 100) break;
+            dweet(i,n);
+
         }
         else
             printf("Timeout\n");
