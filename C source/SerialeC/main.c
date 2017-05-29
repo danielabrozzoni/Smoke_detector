@@ -36,39 +36,6 @@
 
 char dataIn[SIZE];
 
-/**
-    \brief This is an implementation of pow function, I created it because on school's pc (an old pc with Windows XP)
-    pow function is different and doesn't work as expected (I don't know why)
-*/
-
-int powa(int a, int b)
-{
-    int i,n = 1;
-    for(i = 0; i < b; i++)
-        n*=a;
-    return n;
-}
-
-/**
-
-    \brief Like powa, this is an implementation of stoi.
-
-*/
-
-int sto(char stringa[])
-{
-    int i,n = 0;
-    for( i = 0; stringa[i] != '\0'; i++)
-    {
-        if(dataIn[i] - '0'>= 0){
-            n += (dataIn[i] - '0')*powa(10,strlen(stringa) - i - 1);
-        //printf("%d %d %d \n", (dataIn[i] - '0'), powa(10,3 - i - 1), (dataIn[i] - '0')*powa(10,3 - 1 - i));
-    }}
-    //printf("\n");
-
-    return n;
-}
-
 int main()
 {
     FILE *out;
@@ -90,10 +57,9 @@ int main()
             //printf("%d byte letti\n%s \n",read,dataIn);
             //printf("%s",dataIn);
             int n = atoi(dataIn);
-            //printf("%d\n", n);
+            printf("%d\n", n);
             i++;
-            //Questa parte serve solo per uscire dal ciclo dopo 5 letture
-            if (i == 10) break;
+            if (i == 100) break;
         }
         else
             printf("Timeout\n");
