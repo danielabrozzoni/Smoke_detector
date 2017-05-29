@@ -39,7 +39,7 @@ char dataIn[SIZE];
 int main()
 {
     FILE *out;
-    //out = freopen("dati.txt", "w", stdout);
+    out = freopen("dati.txt", "w", stdout);
     HANDLE com;
     com = COM_open(3, '0', 9600, 'n', 8, 1, 'n');
     if (com == -1)
