@@ -15,7 +15,7 @@ In tis repository you'll find:
 # Unix World
 You have only one file, it isn't difficult lol
 # Windows
-(Are you reeeally sure you want to use Tumblr)
+(Are you reeeally sure you want to use Windows? :c)
 - dweet: an example, with this you can send your data on dweet.io
 - Grafico: in progress
 - SerialeC: reads all the data on serial port and sends on dweet 
