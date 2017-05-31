@@ -14,7 +14,10 @@
 
     I have just added a part to write on firebase.
     First of all, you have to install firebase CLI (https://github.com/firebase/firebase-tools)
-    Then, you have to create your own firebase directory 
+    Then, you have to create your own firebase directory (I use my user directory, where I 
+    run my code, if you run it in a different directory (for example in a Codeblock's project
+    directory) you have to move to your firebase directory by using bash command like
+    cd)
 
 */
 
@@ -53,11 +56,11 @@ void position()
     //printf("%s", control);
 }
 
-void firebase(int value, char key[])
+void firebase(float value, char key[])
 {
     FILE *out;
     out = freopen("documents/firebase/output.txt", "w", stdout);
-    printf("{ \n \"type\": \"%d\" \n}", value);
+    printf("{ \n \"%s\": \"%f\" \n}", key, value);
     fclose(out);
     char control[1024];
     //system("cd Documents/firebase");
@@ -91,12 +94,8 @@ int main()
     {
         int n;
         scanf("%d", &n);
-        //printf("%d\n",n);
-        char buffer[32];
-        snprintf(buffer,32, "%d", n);
-        //dweet("Smoke",buffer);
         i++;
-        firebase(n, "value");
+        firebase(n, "Alternanza");
 
     }
     fclose(file);
