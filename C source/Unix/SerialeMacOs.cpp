@@ -11,6 +11,11 @@
     probably you deserve it
     Come to the Dark Side, we have sudo 
 
+
+    I have just added a part to write on firebase.
+    First of all, you have to install firebase CLI (https://github.com/firebase/firebase-tools)
+    Then, you have to create your own firebase directory 
+
 */
 
 
@@ -45,12 +50,29 @@ void position()
     strncat(control, " > ", 512);
     strncat(control, fileC, 512);
     system(control);
-    printf("%s", control);
+    //printf("%s", control);
+}
+
+void firebase(int value, char key[])
+{
+    FILE *out;
+    out = freopen("documents/firebase/output.txt", "w", stdout);
+    printf("{ \n \"type\": \"%d\" \n}", value);
+    fclose(out);
+    char control[1024];
+    //system("cd Documents/firebase");
+    
+    //system("cd firebase");
+    strncpy(control, "firebase database:set --confirm /", 1024);
+    strncat(control, key, 1024);
+    strncat(control, " documents/firebase/output.txt", 1024);
+    printf("%s\n", control);
+    system(control);
+
 }
 
 int main()
 {
-    
     FILE *file;
     file = freopen("/dev/cu.usbmodem1421","r", stdin);  //Opening device file
     int i = 0;
@@ -59,29 +81,24 @@ int main()
     FILE *in;
     in = fopen(fileC, "r");
 
+    float x, y;
+    fscanf(in, "%f %f", &x, &y);
+    fclose(in);
+    //firebase(x,"Latitude");
+    //firebase(y,"Longitude");
     
     while(1)
     {
-        float x, y;
-        fscanf(in, "%f %f", &x, &y);
-        char buffer[32];
-        snprintf(buffer, 32, "%f", x);
-        dweet("Latitude",buffer);
-        snprintf(buffer, 32, "%f", y);
-        dweet("Longitude",buffer);
         int n;
         scanf("%d", &n);
         //printf("%d\n",n);
+        char buffer[32];
         snprintf(buffer,32, "%d", n);
-        dweet("Smoke",buffer);
-        /*
-        if(n > soglia)
-            dweet("Text", "Ohoh,qui_va_tutto_a_fuoco");
-        else
-            dweet("Text", "Sembra_sia_tutto_okey");
-        */
+        //dweet("Smoke",buffer);
         i++;
+        firebase(n, "value");
 
     }
     fclose(file);
+    
 }
