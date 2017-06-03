@@ -46,52 +46,78 @@
 // initialize the library with the numbers of the interface pins
 LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
 
-
+#define BLUE 4
+#define GREEN 3
+#define RED 2
 int sensorThres = 400;
 int warning = sensorThres/2;
+int password = 1000;
+int pinBottone = 6;
+int flag = 0;
+
+void setPassword(){
+   randomSeed(millis());
+   password = random(0, 10000);
+  Serial.println("Password:");
+  Serial.println(password);
+  flag = 1;
+}
 
 void setup() {
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
-
-  //pinMode(0, OUTPUT);
-  //pinMode(1, OUTPUT);
+  
   pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+   pinMode(pinBottone, INPUT_PULLUP);
   Serial.begin(9600);
 }
 
 void loop() 
 {
-  lcd.clear();
-  int analogSensor = analogRead(0);
-  lcd.print(analogSensor);
-  lcd.setCursor(0,0);
-  Serial.println(analogSensor);
-
-  digitalWrite(0, LOW);
-  digitalWrite(1, LOW);
-  digitalWrite(2, HIGH);
-/*
-  if(analogSensor > warning && analogSensor < sensorThres)
+  if(digitalRead(pinBottone) == LOW)
   {
-    digitalWrite(0, LOW);
-    digitalWrite(1, HIGH);
-    digitalWrite(2, LOW);
-    
-    lcd.setCursor(0,1);
-    lcd.print("ALERT!");
+    while(digitalRead(pinBottone) == LOW);
+    setPassword();
   }
-
-  else if(analogSensor >= sensorThres)
+  if(flag == 1)
   {
-    digitalWrite(0, HIGH);
-    digitalWrite(1, LOW);
-    digitalWrite(2, LOW);
+    lcd.clear();
+    int analogSensor = analogRead(0);
+    lcd.print(analogSensor);
+    lcd.setCursor(0,0);
+    Serial.println(analogSensor);
+  
+  
+    if(analogSensor > warning && analogSensor < sensorThres)
+    {
+      analogWrite(BLUE, 255);
+      analogWrite(RED, 255);
+      analogWrite(GREEN, 0);
+      
+      lcd.setCursor(0,1);
+      lcd.print("ALERT!");
+    }
+  
+    else if(analogSensor >= sensorThres)
+    {
+      analogWrite(BLUE, 0);
+      analogWrite(RED, 255);
+      analogWrite(GREEN, 0);
+      
+      lcd.setCursor(0,1);
+      lcd.print("WARNING!");    
+    }
+  
+    else
+    {
+      analogWrite(BLUE, 0);
+      analogWrite(RED, 0);
+      analogWrite(GREEN, 255);
+      
+    }
     
-    lcd.setCursor(0,1);
-    lcd.print("WARNING!");    
+    delay(1000);
   }
-*/
-  delay(1000);
 }
-
