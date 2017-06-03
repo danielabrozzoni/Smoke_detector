@@ -56,20 +56,20 @@ void position()
     //printf("%s", control);
 }
 
-void firebase(float value, char key[])
+void firebase(int value, char key[])
 {
     FILE *out;
-    out = freopen("documents/firebase/output.txt", "w", stdout);
-    printf("{ \n \"%s\": \"%f\" \n}", key, value);
+    out = fopen("documents/firebase/output.txt", "w");
+    fprintf(out,"{ \n \"%s\": \"%d\" \n}", key, value);
     fclose(out);
     char control[1024];
     //system("cd Documents/firebase");
-    
     //system("cd firebase");
     strncpy(control, "firebase database:set --confirm /", 1024);
     strncat(control, key, 1024);
     strncat(control, " documents/firebase/output.txt", 1024);
-    printf("%s\n", control);
+    //printf("MA IO BOH");
+    //printf("%s\n", control);
     system(control);
 
 }
@@ -79,24 +79,33 @@ int main()
     FILE *file;
     file = freopen("/dev/cu.usbmodem1421","r", stdin);  //Opening device file
     int i = 0;
-    position();
-    
-    FILE *in;
-    in = fopen(fileC, "r");
 
-    float x, y;
-    fscanf(in, "%f %f", &x, &y);
-    fclose(in);
-    //firebase(x,"Latitude");
-    //firebase(y,"Longitude");
-    
+    char Password[512];
+    int password;
+
+    scanf("%s", Password);
+    while(strcmp(Password, "Password:") != 0)
+    {
+        scanf("%s", Password); 
+        //printf("LOL");
+    }
+    scanf("%d", &password);
+    firebase(password, "Password");
+    //printf("%d", password);
+    int flag = 0;
+
     while(1)
     {
         int n;
         scanf("%d", &n);
         i++;
-        firebase(n, "Alternanza");
+        printf("%d\n", n);
+        
+        if((n > 400 || i%20 == 0) && flag == 0)
+            firebase(n, "Alternanza"), flag = 1;
 
+        if(n < 400)
+            flag = 0;
     }
     fclose(file);
     
