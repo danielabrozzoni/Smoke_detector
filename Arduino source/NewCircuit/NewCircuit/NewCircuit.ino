@@ -62,6 +62,10 @@ void setPassword(){
    password = random(0, 10000);
   Serial.println("Password:");
   Serial.println(password);
+  lcd.print("Password:");
+  lcd.setCursor(1,0);
+  lcd.print(password);
+  delay(10000);
   flag = 1;
 }
 
