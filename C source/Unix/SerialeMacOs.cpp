@@ -65,8 +65,8 @@ void firebase(int value, char key[])
     char control[1024];
     //system("cd Documents/firebase");
     //system("cd firebase");
-    strncpy(control, "firebase database:set --confirm /", 1024);
-    strncat(control, key, 1024);
+    strncpy(control, "firebase database:set --confirm /Alternanza", 1024);
+    //strncat(control, key, 1024);
     strncat(control, " documents/firebase/output.txt", 1024);
     //printf("MA IO BOH");
     //printf("%s\n", control);
@@ -84,24 +84,28 @@ int main()
     int password;
 
     scanf("%s", Password);
+    //printf("%d", password);
     while(strcmp(Password, "Password:") != 0)
     {
         scanf("%s", Password); 
         //printf("LOL");
     }
     scanf("%d", &password);
+    printf("OK!\n");
     firebase(password, "Password");
-    //printf("%d", password);
+    //printf("%d", password); 
+    usleep(10000);
+    //firebase(0, "Alternanza");
     int flag = 0;
 
-    while(1)
+   while(1)
     {
         int n;
         scanf("%d", &n);
         i++;
         printf("%d\n", n);
         
-        if((n > 400 || i%20 == 0) && flag == 0)
+        if((n > 400 && flag == 0) || (i%20 == 0))
             firebase(n, "Alternanza"), flag = 1;
 
         if(n < 400)
