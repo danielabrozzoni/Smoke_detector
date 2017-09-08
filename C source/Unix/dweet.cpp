@@ -66,14 +66,26 @@ int main()
     float x, y;
     fscanf(in, "%f %f", &x, &y);
     fclose(in);
+
+    char Password[512];
+    int password;
+    scanf("%s", Password);
+    
+    while(strcmp(Password, "Password:") != 0)
+    {
+        scanf("%s", Password); 
+        //printf("LOL");
+    }
+    scanf("%d", &password);
+    printf("OK!\n");
     
     while(1)
     {
         char buffer[32];
-        snprintf(buffer, 32, "%f", x);
-        dweet("Latitude",buffer);
-        snprintf(buffer, 32, "%f", y);
-        dweet("Longitude",buffer);
+        //snprintf(buffer, 32, "%f", x);
+        //dweet("Latitude",buffer);
+        //snprintf(buffer, 32, "%f", y);
+        //dweet("Longitude",buffer);
         int n;
         scanf("%d", &n);
         snprintf(buffer,32, "%d", n);
